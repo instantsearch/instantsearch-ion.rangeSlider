@@ -1,0 +1,3 @@
+instantsearch-ion.rangeSlider
+=================
+

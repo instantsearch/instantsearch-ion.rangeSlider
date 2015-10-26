@@ -1,0 +1,24 @@
+language: node_js
+branches:
+  only:
+    - master
+    - develop
+env:
+  matrix:
+  - TEST_SUITE=unit
+  # - TEST_SUITE=integration BROWSER='chrome'
+  # - TEST_SUITE=integration BROWSER='firefox'
+  # - TEST_SUITE=integration BROWSER='safari'
+  # - TEST_SUITE=integration BROWSER='internet explorer:8'
+  # - TEST_SUITE=integration BROWSER='internet explorer:9'
+  # - TEST_SUITE=integration BROWSER='internet explorer:10'
+  # - TEST_SUITE=integration BROWSER='internet explorer:11'
+node_js:
+- 0.12
+before_script:
+- npm install -g grunt-cli
+- npm install -g node-static
+- grunt build
+script: test/ci
+# addons:
+#   sauce_connect: true
