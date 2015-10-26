@@ -4,7 +4,7 @@ instantsearch-ion.rangeSlider
 This JavaScript library embeds the awesome [ion.rangeSlider](https://github.com/IonDen/ion.rangeSlider) as an [instantsearch.js](https://github.com/algolia/instantsearch.js) widget.
 
 [![build status](https://travis-ci.org/algolia/instantsearch-ion.rangeSlider.svg?branch=master)](http://travis-ci.org/algolia/instantsearch-ion.rangeSlider)
-[![NPM version](https://badge.fury.io/js/instantsearch-ion.rangeSlider.svg)](http://badge.fury.io/js/instantsearch-ion.rangeSlider)
+[![NPM version](https://badge.fury.io/js/instantsearch-ion.rangeslider.svg)](http://badge.fury.io/js/instantsearch-ion.rangeslider)
 
 Table of Contents
 -----------------
