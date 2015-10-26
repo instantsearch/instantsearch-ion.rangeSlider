@@ -20,6 +20,7 @@ Usage
 To use the `ion.rangeSlider` as a widget, do as follow:
 
  * include the `ion.rangeSlider` theme, for instance the `ion.rangeSlider.css` and `ion.rangeSlider.skinFlat.css` stylesheets,
+ * include the `ion.rangeSlider.min.js` JavaScript script,
  * include the `instantsearch-ion.rangeSlider.min.js` JavaScript script,
  * and instantiate the `instantsearch.widgets.ionRangeSlider` widget.
 
@@ -27,13 +28,14 @@ To use the `ion.rangeSlider` as a widget, do as follow:
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="....../ion.rangeSlider.css">
-    <link rel="stylesheet" type="text/css" href="....../ion.rangeSlider.skinFlat.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/ion.rangeslider/2.0.6/css/ion.rangeSlider.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/ion.rangeslider/2.0.6/css/ion.rangeSlider.skinFlat.css">
   </head>
   <body>
     <div id="slider"></div>
     <!-- [...] -->
-    <script src="......../instantsearch-ion.rangeSlider.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/ion.rangeslider/2.0.6/js/ion.rangeSlider.min.js"></script>
+    <script src="instantsearch-ion.rangeSlider.min.js"></script>
     <script>
       var search = instantsearch({
         appId: 'YourApplicationID',

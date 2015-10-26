@@ -15,7 +15,8 @@
     "url": "https://github.com/algolia/instantsearch-ion.rangeSlider.git"
   },
   "peerDependencies": {
-    "jquery": ">= 1.7"
+    "jquery": ">= 1.7",
+    "ion-rangeslider": "~2.0.6"
   },
   "devDependencies": {
     "chai": "^3.0.0",
@@ -70,8 +71,5 @@
     "test:watch": "karma start"
   },
   "version": "0.0.1",
-  "main": "index.js",
-  "dependencies": {
-    "ion-rangeslider": "^2.1.2"
-  }
+  "main": "index.js"
 }

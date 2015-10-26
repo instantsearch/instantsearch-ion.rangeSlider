@@ -43,6 +43,7 @@ module.exports = function(grunt) {
         },
         externals: [{
           jquery: 'jQuery',
+          'ion-rangeslider': 'ion-rangeslider',
           'instantsearch.js': 'instantsearch'
         }]
       }
