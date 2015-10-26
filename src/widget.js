@@ -1,12 +1,16 @@
 'use strict';
 
 var $ = require('jquery');
-require('ion-rangeslider');
-
 var instantsearch = require('instantsearch.js');
 
 function slider(options) {
   var $container = $(options.container);
+  if ($container.length === 0) {
+    throw new Error('ion.rangeSlider: cannot select \'' + options.container + '\'');
+  }
+  if (!$.fn.ionRangeSlider) {
+    throw new Error('The ion.rangeSlider jQuery plugin is missing. Did you include ion.rangeSlider.min.js?');
+  }
   var facetName = options.facetName;
 
   return {

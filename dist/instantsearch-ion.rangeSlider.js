@@ -61,12 +61,16 @@
 	'use strict';
 
 	var $ = __webpack_require__(2);
-	__webpack_require__(3);
-
-	var instantsearch = __webpack_require__(4);
+	var instantsearch = __webpack_require__(3);
 
 	function slider(options) {
 	  var $container = $(options.container);
+	  if ($container.length === 0) {
+	    throw new Error('ion.rangeSlider: cannot select \'' + options.container + '\'');
+	  }
+	  if (!$.fn.ionRangeSlider) {
+	    throw new Error('The ion.rangeSlider jQuery plugin is missing. Did you include ion.rangeSlider.min.js?');
+	  }
 	  var facetName = options.facetName;
 
 	  return {
@@ -122,12 +126,6 @@
 
 /***/ },
 /* 3 */
-/***/ function(module, exports) {
-
-	module.exports = ion-rangeslider;
-
-/***/ },
-/* 4 */
 /***/ function(module, exports) {
 
 	module.exports = instantsearch;
