@@ -16,4 +16,6 @@ For more information on semantic versioning, please visit http://semver.org/.
 
 ---
 
-### 0.0.0 Oct 15, 2015
+### 0.1.0 Oct 26, 2015
+
+ * Initial import

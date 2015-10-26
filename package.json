@@ -70,6 +70,6 @@
     "test": "karma start --single-run && grunt lint",
     "test:watch": "karma start"
   },
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "index.js"
 }

@@ -1,5 +1,5 @@
 /*!
- * instantsearch-ion.rangeSlider 0.0.1
+ * instantsearch-ion.rangeSlider 0.1.0
  * https://github.com/algolia/instantsearch-ion.rangeSlider
  * Copyright 2015 Algolia, Inc. and other contributors; Licensed MIT
  */
