@@ -64,6 +64,9 @@
 	var instantsearch = __webpack_require__(3);
 
 	function slider(options) {
+	  if (!options.facetName || !options.container) {
+	    throw new Error('ion.rangeSlider: usage: ionRangeSlider({container, facetName})');
+	  }
 	  var $container = $(options.container);
 	  if ($container.length === 0) {
 	    throw new Error('ion.rangeSlider: cannot select \'' + options.container + '\'');
