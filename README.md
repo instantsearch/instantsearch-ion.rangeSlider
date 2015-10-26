@@ -9,10 +9,17 @@ This JavaScript library embeds the awesome [ion.rangeSlider](https://github.com/
 Table of Contents
 -----------------
 
+* [Preview](#preview)
 * [Usage](#usage)
 * [Development](#development)
 * [Testing](#testing)
 * [Credits](#credits)
+
+
+Preview
+------
+
+![widget](./widget.gif)
 
 Usage
 ------
