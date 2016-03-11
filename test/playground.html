@@ -42,7 +42,9 @@
       search.addWidget(
         instantsearch.widgets.ionRangeSlider({
           container: '#slider',
-          facetName: 'price'
+          attributeName: 'price',
+          min: 0,
+          max: 100
         })
       );
       search.start();

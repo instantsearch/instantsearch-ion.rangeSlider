@@ -31,6 +31,9 @@ To use the `ion.rangeSlider` as a widget, do as follow:
  * include the `instantsearch-ion.rangeSlider.min.js` JavaScript script,
  * and instantiate the `instantsearch.widgets.ionRangeSlider` widget.
 
+
+**Note:** If you don't specify the min/max values; you need to ensure your `attributeName` option is targeting a **faceted** attribute.
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -53,7 +56,9 @@ To use the `ion.rangeSlider` as a widget, do as follow:
       search.addWidget(
         instantsearch.widgets.ionRangeSlider({
           container: '#slider',
-          facetName: 'YourAttribute'
+          attributeName: 'YourAttribute',
+          // min: 0,
+          // max: 100,
         })
       );
       // [...]

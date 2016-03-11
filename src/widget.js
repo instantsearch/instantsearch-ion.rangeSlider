@@ -4,8 +4,8 @@ var $ = require('jquery');
 var instantsearch = require('instantsearch.js');
 
 function slider(options) {
-  if (!options.facetName || !options.container) {
-    throw new Error('ion.rangeSlider: usage: ionRangeSlider({container, facetName})');
+  if (!options.attributeName || !options.container) {
+    throw new Error('ion.rangeSlider: usage: ionRangeSlider({container, attributeName})');
   }
   var $container = $(options.container);
   if ($container.length === 0) {
@@ -14,41 +14,66 @@ function slider(options) {
   if (!$.fn.ionRangeSlider) {
     throw new Error('The ion.rangeSlider jQuery plugin is missing. Did you include ion.rangeSlider.min.js?');
   }
-  var facetName = options.facetName;
+  var attributeName = options.attributeName;
+
+  var needFacet = typeof options.min === 'undefined' || typeof options.max === 'undefined';
 
   return {
     getConfiguration: function() {
-      return {
-        disjunctiveFacets: [facetName]
-      };
+      return needFacet ? {
+        disjunctiveFacets: [attributeName]
+      } : {};
+    },
+
+    init: function(args) {
+      var helper = args.helper;
+
+      if (typeof options.min !== 'undefined') {
+        helper.addNumericRefinement(attributeName, '>=', options.min);
+      }
+      if (typeof options.max !== 'undefined') {
+        helper.addNumericRefinement(attributeName, '<=', options.max);
+      }
     },
 
     render: function(args) {
       var helper = args.helper;
-      var stats = args.results.getFacetStats(facetName);
 
-      var from = helper.state.getNumericRefinement(facetName, '>=');
-      from = from && from[0] || stats.min;
+      var from = helper.state.getNumericRefinement(attributeName, '>=');
+      from = from && from[0];
 
-      var to = helper.state.getNumericRefinement(facetName, '<=');
-      to = to && to[0] || stats.max;
+      var to = helper.state.getNumericRefinement(attributeName, '<=');
+      to = to && to[0];
+
+      var min;
+      var max;
+      if (needFacet) {
+        var stats = args.results.getFacetStats(attributeName);
+        min = stats.min;
+        max = stats.max;
+      } else {
+        min = options.min;
+        max = options.max;
+      }
+      from = from || min;
+      to = to || max;
 
       var sliderOptions = {
         type: 'double',
         grid: true,
-        min: stats.min,
-        max: stats.max,
+        min: min,
+        max: max,
         from: from,
         to: to,
         onFinish: function(data) {
           if (data.from !== from) {
-            helper.removeNumericRefinement(facetName, '>=');
-            helper.addNumericRefinement(facetName, '>=', data.from);
+            helper.removeNumericRefinement(attributeName, '>=');
+            helper.addNumericRefinement(attributeName, '>=', data.from);
             helper.search();
           }
           if (data.to !== to) {
-            helper.removeNumericRefinement(facetName, '<=');
-            helper.addNumericRefinement(facetName, '<=', data.to);
+            helper.removeNumericRefinement(attributeName, '<=');
+            helper.addNumericRefinement(attributeName, '<=', data.to);
             helper.search();
           }
         }
