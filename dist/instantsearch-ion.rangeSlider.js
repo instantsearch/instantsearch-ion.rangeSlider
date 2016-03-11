@@ -63,6 +63,15 @@
 	var $ = __webpack_require__(2);
 	var instantsearch = __webpack_require__(3);
 
+	function uniq(a) {
+	  return a.reduce(function(p, c) {
+	    if (p.indexOf(c) < 0) {
+	      p.push(c);
+	    }
+	    return p;
+	  }, []);
+	}
+
 	function slider(options) {
 	  if (!options.attributeName || !options.container) {
 	    throw new Error('ion.rangeSlider: usage: ionRangeSlider({container, attributeName})');
@@ -74,14 +83,16 @@
 	  if (!$.fn.ionRangeSlider) {
 	    throw new Error('The ion.rangeSlider jQuery plugin is missing. Did you include ion.rangeSlider.min.js?');
 	  }
-	  var attributeName = options.attributeName;
+
+	  var lowerBoundAttributeName = options.attributeName.lowerBound || options.attributeName;
+	  var upperBoundAttributeName = options.attributeName.upperBound || options.attributeName;
 
 	  var needFacet = typeof options.min === 'undefined' || typeof options.max === 'undefined';
 
 	  return {
 	    getConfiguration: function() {
 	      return needFacet ? {
-	        disjunctiveFacets: [attributeName]
+	        disjunctiveFacets: uniq([lowerBoundAttributeName, upperBoundAttributeName])
 	      } : {};
 	    },
 
@@ -89,28 +100,27 @@
 	      var helper = args.helper;
 
 	      if (typeof options.min !== 'undefined') {
-	        helper.addNumericRefinement(attributeName, '>=', options.min);
+	        helper.addNumericRefinement(lowerBoundAttributeName, '>=', options.min);
 	      }
 	      if (typeof options.max !== 'undefined') {
-	        helper.addNumericRefinement(attributeName, '<=', options.max);
+	        helper.addNumericRefinement(upperBoundAttributeName, '<=', options.max);
 	      }
 	    },
 
 	    render: function(args) {
 	      var helper = args.helper;
 
-	      var from = helper.state.getNumericRefinement(attributeName, '>=');
+	      var from = helper.state.getNumericRefinement(lowerBoundAttributeName, '>=');
 	      from = from && from[0];
 
-	      var to = helper.state.getNumericRefinement(attributeName, '<=');
+	      var to = helper.state.getNumericRefinement(upperBoundAttributeName, '<=');
 	      to = to && to[0];
 
 	      var min;
 	      var max;
 	      if (needFacet) {
-	        var stats = args.results.getFacetStats(attributeName);
-	        min = stats.min;
-	        max = stats.max;
+	        min = args.results.getFacetStats(lowerBoundAttributeName).min;
+	        max = args.results.getFacetStats(upperBoundAttributeName).max;
 	      } else {
 	        min = options.min;
 	        max = options.max;
@@ -127,13 +137,13 @@
 	        to: to,
 	        onFinish: function(data) {
 	          if (data.from !== from) {
-	            helper.removeNumericRefinement(attributeName, '>=');
-	            helper.addNumericRefinement(attributeName, '>=', data.from);
+	            helper.removeNumericRefinement(lowerBoundAttributeName, '>=');
+	            helper.addNumericRefinement(lowerBoundAttributeName, '>=', data.from);
 	            helper.search();
 	          }
 	          if (data.to !== to) {
-	            helper.removeNumericRefinement(attributeName, '<=');
-	            helper.addNumericRefinement(attributeName, '<=', data.to);
+	            helper.removeNumericRefinement(upperBoundAttributeName, '<=');
+	            helper.addNumericRefinement(upperBoundAttributeName, '<=', data.to);
 	            helper.search();
 	          }
 	        }

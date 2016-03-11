@@ -57,6 +57,15 @@ To use the `ion.rangeSlider` as a widget, do as follow:
         instantsearch.widgets.ionRangeSlider({
           container: '#slider',
           attributeName: 'YourAttribute',
+          // if you want to specify 2 different attributes, use:
+          //
+          // attributeName: {
+          //  lowerBound: 'YourLowerBoundAttribute',
+          //  upperBound: 'YourLowerBoundAttribute'
+          //},
+          //
+          //
+          // if you want to force the min/max values, use:
           // min: 0,
           // max: 100,
         })
