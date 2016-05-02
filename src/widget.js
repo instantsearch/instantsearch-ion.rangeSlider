@@ -14,7 +14,7 @@ function uniq(a) {
 
 function slider(options) {
   if (!options.attributeName || !options.container) {
-    throw new Error('ion.rangeSlider: usage: ionRangeSlider({container, attributeName})');
+    throw new Error('ion.rangeSlider: usage: ionRangeSlider({container, attributeName, ionRangeSliderOptions})');
   }
   var $container = $(options.container);
   if ($container.length === 0) {

@@ -20,11 +20,11 @@ describe('Widget', function() {
 
   it('throws if the container is not valid', function() {
     expect(function() {
-      instantsearch.widgets.ionRangeSlider({container: '#slider-doesnt-exist', facetName: 'price'});
+      instantsearch.widgets.ionRangeSlider({container: '#slider-doesnt-exist', attributeName: 'price'});
     }).toThrow();
   });
 
-  it('throws if the facetName is not defined', function() {
+  it('throws if the attributeName is not defined', function() {
     expect(function() {
       instantsearch.widgets.ionRangeSlider({container: '#slider'});
     }).toThrow();
@@ -35,7 +35,7 @@ describe('Widget', function() {
     try {
       $.fn.ionRangeSlider = undefined;
       expect(function() {
-        instantsearch.widgets.ionRangeSlider({container: '#slider', facetName: 'price'});
+        instantsearch.widgets.ionRangeSlider({container: '#slider', attributeName: 'price'});
       }).toThrow();
     } finally {
       $.fn.ionRangeSlider = old;
@@ -46,7 +46,7 @@ describe('Widget', function() {
     var widget;
 
     beforeEach(function() {
-      widget = instantsearch.widgets.ionRangeSlider({container: '#slider', facetName: 'price'});
+      widget = instantsearch.widgets.ionRangeSlider({container: '#slider', attributeName: 'price'});
     });
 
     it('configures the helper', function() {
@@ -66,7 +66,7 @@ describe('Widget', function() {
         search: sinon.spy()
       };
       widget.render({helper: helper, results: results});
-      expect(results.getFacetStats.calledOnce).toBe(true);
+      expect(results.getFacetStats.calledTwice).toBe(true);
       expect(helper.state.getNumericRefinement.calledTwice).toBe(true);
       expect(helper.removeNumericRefinement.called).toBe(false);
       expect(helper.addNumericRefinement.called).toBe(false);
