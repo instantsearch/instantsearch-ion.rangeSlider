@@ -26,6 +26,7 @@ function slider(options) {
 
   var lowerBoundAttributeName = options.attributeName.lowerBound || options.attributeName;
   var upperBoundAttributeName = options.attributeName.upperBound || options.attributeName;
+  var ionRangeSliderOptions = options.ionRangeSliderOptions || {};
 
   var needFacet = typeof options.min === 'undefined' || typeof options.max === 'undefined';
 
@@ -88,7 +89,7 @@ function slider(options) {
           }
         }
       };
-      $container.ionRangeSlider(sliderOptions);
+      $container.ionRangeSlider($.extend({}, sliderOptions, ionRangeSliderOptions));
     }
   };
 }

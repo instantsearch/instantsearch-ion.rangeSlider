@@ -63,11 +63,18 @@ To use the `ion.rangeSlider` as a widget, do as follow:
           //  lowerBound: 'YourLowerBoundAttribute',
           //  upperBound: 'YourLowerBoundAttribute'
           //},
-          //
+
           //
           // if you want to force the min/max values, use:
           // min: 0,
           // max: 100,
+
+          //
+          // if you want to pass extra parameters to the underlying
+          // ionRangeSlider, you can use the following object:
+          // ionRangeSliderOptions: {
+          //   prettify_enabled: false
+          //}
         })
       );
       // [...]

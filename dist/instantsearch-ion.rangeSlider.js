@@ -1,5 +1,5 @@
 /*!
- * instantsearch-ion.rangeSlider 0.1.0
+ * instantsearch-ion.rangeSlider 0.2.0
  * https://github.com/algolia/instantsearch-ion.rangeSlider
  * Copyright 2016 Algolia, Inc. and other contributors; Licensed MIT
  */
@@ -86,6 +86,7 @@
 
 	  var lowerBoundAttributeName = options.attributeName.lowerBound || options.attributeName;
 	  var upperBoundAttributeName = options.attributeName.upperBound || options.attributeName;
+	  var ionRangeSliderOptions = options.ionRangeSliderOptions || {};
 
 	  var needFacet = typeof options.min === 'undefined' || typeof options.max === 'undefined';
 
@@ -148,7 +149,7 @@
 	          }
 	        }
 	      };
-	      $container.ionRangeSlider(sliderOptions);
+	      $container.ionRangeSlider($.extend({}, sliderOptions, ionRangeSliderOptions));
 	    }
 	  };
 	}

@@ -16,6 +16,10 @@ For more information on semantic versioning, please visit http://semver.org/.
 
 ---
 
+### 0.2.0 May 02, 2016
+
+ * Allow the usage of custom ionRangeSliderOptions
+
 ### 0.1.0 Oct 26, 2015
 
  * Initial import
