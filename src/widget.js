@@ -29,6 +29,7 @@ function slider(options) {
   var ionRangeSliderOptions = options.ionRangeSliderOptions || {};
 
   var needFacet = typeof options.min === 'undefined' || typeof options.max === 'undefined';
+  var ionRangeSlider;
 
   return {
     getConfiguration: function() {
@@ -91,7 +92,15 @@ function slider(options) {
           }
         }
       };
-      $container.ionRangeSlider($.extend({}, sliderOptions, ionRangeSliderOptions));
+
+      sliderOptions = $.extend({}, sliderOptions, ionRangeSliderOptions);
+      $container.show();
+      if (ionRangeSlider) {
+        ionRangeSlider.update(sliderOptions);
+      } else {
+        $container.ionRangeSlider(sliderOptions);
+        ionRangeSlider = $container.data('ionRangeSlider');
+      }
     }
   };
 }
