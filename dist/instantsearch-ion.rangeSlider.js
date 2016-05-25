@@ -121,10 +121,10 @@
 	      var min;
 	      var max;
 	      if (needFacet) {
-	        min = args.results.getFacetStats(lowerBoundAttributeName) ?
-	          args.results.getFacetStats(lowerBoundAttributeName).min : 0;
-	        max = args.results.getFacetStats(upperBoundAttributeName) ?
-	          args.results.getFacetStats(upperBoundAttributeName).max : 0;
+	        var lowerFacetStats = args.results.getFacetStats(lowerBoundAttributeName);
+	        var upperFacetStats = args.results.getFacetStats(upperBoundAttributeName);
+	        min = lowerFacetStats ? lowerFacetStats.min : 0;
+	        max = upperFacetStats ? upperFacetStats.max : 0;
 	      } else {
 	        min = options.min;
 	        max = options.max;
