@@ -60,8 +60,10 @@ function slider(options) {
       var min;
       var max;
       if (needFacet) {
-        min = args.results.getFacetStats(lowerBoundAttributeName).min;
-        max = args.results.getFacetStats(upperBoundAttributeName).max;
+        min = args.results.getFacetStats(lowerBoundAttributeName) ?
+          args.results.getFacetStats(lowerBoundAttributeName).min : 0;
+        max = args.results.getFacetStats(upperBoundAttributeName) ?
+          args.results.getFacetStats(upperBoundAttributeName).max : 0;
       } else {
         min = options.min;
         max = options.max;
