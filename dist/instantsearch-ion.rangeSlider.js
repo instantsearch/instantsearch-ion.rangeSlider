@@ -1,5 +1,5 @@
 /*!
- * instantsearch-ion.rangeSlider 0.2.0
+ * instantsearch-ion.rangeSlider 0.2.1
  * https://github.com/algolia/instantsearch-ion.rangeSlider
  * Copyright 2016 Algolia, Inc. and other contributors; Licensed MIT
  */
@@ -74,7 +74,7 @@
 
 	function slider(options) {
 	  if (!options.attributeName || !options.container) {
-	    throw new Error('ion.rangeSlider: usage: ionRangeSlider({container, attributeName})');
+	    throw new Error('ion.rangeSlider: usage: ionRangeSlider({container, attributeName, ionRangeSliderOptions})');
 	  }
 	  var $container = $(options.container);
 	  if ($container.length === 0) {
@@ -89,6 +89,7 @@
 	  var ionRangeSliderOptions = options.ionRangeSliderOptions || {};
 
 	  var needFacet = typeof options.min === 'undefined' || typeof options.max === 'undefined';
+	  var ionRangeSlider;
 
 	  return {
 	    getConfiguration: function() {
@@ -120,8 +121,10 @@
 	      var min;
 	      var max;
 	      if (needFacet) {
-	        min = args.results.getFacetStats(lowerBoundAttributeName).min;
-	        max = args.results.getFacetStats(upperBoundAttributeName).max;
+	        min = args.results.getFacetStats(lowerBoundAttributeName) ?
+	          args.results.getFacetStats(lowerBoundAttributeName).min : 0;
+	        max = args.results.getFacetStats(upperBoundAttributeName) ?
+	          args.results.getFacetStats(upperBoundAttributeName).max : 0;
 	      } else {
 	        min = options.min;
 	        max = options.max;
@@ -149,7 +152,15 @@
 	          }
 	        }
 	      };
-	      $container.ionRangeSlider($.extend({}, sliderOptions, ionRangeSliderOptions));
+
+	      sliderOptions = $.extend({}, sliderOptions, ionRangeSliderOptions);
+	      $container.show();
+	      if (ionRangeSlider) {
+	        ionRangeSlider.update(sliderOptions);
+	      } else {
+	        $container.ionRangeSlider(sliderOptions);
+	        ionRangeSlider = $container.data('ionRangeSlider');
+	      }
 	    }
 	  };
 	}
