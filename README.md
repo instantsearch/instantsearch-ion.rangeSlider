@@ -1,6 +1,8 @@
-*NOTE FROM MAINTAINERS*
+**NOTE FROM MAINTAINERS**
 
 This repository is no more maintained, you can fork it and maintain it if you want to. Thanks!
+
+---
 
 instantsearch-ion.rangeSlider
 =================
